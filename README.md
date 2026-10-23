@@ -6,3 +6,13 @@
 - VM1: Ubuntu [25.04], имя [UbuntuMain], IP [192.168.56.101]
 - VM2: Ubuntu [25.04], имя [UbuntuSub], IP [192.168.56.102]
 - Сеть: Host-Only
+
+# Проверка сети
+![ip a Основной ВМ](screenshots/main_ip_a.png)
+ip a Основной ВМ
+
+![ip a Вспомогательной ВМ](screenshots/sub_ip_a.jpg)
+ip a Вспомогательно ВМ
+
+![Проверка связи между ВМ](screenshots/ping.png)
+Успешный пинг
