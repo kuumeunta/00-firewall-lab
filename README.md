@@ -1,11 +1,11 @@
 # firewall-lab
-Basic firewall (ufw) configuration between two Ubuntu VM's in a local virtual network. 
+Basic firewall (ufw) configuration between two Ubuntu VMs in a local virtual network. 
 ## Goal
 Set up two Ubuntu virtual machines in a local virtual network, connect them via SSH, and configure the ufw firewall on one of them remotely from the other.
 ## Environment
 - Host: Windows 10, VirtualBox 7.2.22
-- VM1: Ubuntu 25.04, name: UbuntuMain, IP 192.168.56.101
-- VM2: Ubuntu 25.04, name: UbuntuSub, IP 192.168.56.102
+- VM1: Ubuntu 26.04, name: UbuntuMain, IP 192.168.56.101
+- VM2: Ubuntu 26.04, name: UbuntuSub, IP 192.168.56.102
 - Network: Host-Only
 
 ## Network setup
@@ -67,9 +67,9 @@ sudo ufw status verbose
 ```
 ## Testing
 ![subtestserver](screenshots/subtestserver.png)
-Opening :8000 http port on Sub VM and trying to check up connection using curl from Main VM 
+Starting a test web server on port 8000 on Sub VM and trying to check up connection using curl from Main VM 
 ```
-python3 -m http:server 8000
+python3 -m http.server 8000
 ```
 ![subtestserver](screenshots/curldenied.png)
 ```
@@ -81,7 +81,7 @@ Connection is denied, so enabling it on Sub VM as well and trying to reconnect
 ![adding rule and re-enable](screenshots/reenabling.png)
 ```
 sudo ufw allow 8000/tcp
-python3 -m http:server 8000
+python3 -m http.server 8000
 ```
 ![succeed](screenshots/curlallowed.png)
 ```
@@ -90,3 +90,10 @@ curl --max-time 5 192.168.56.102:8000
 Connection established, http blank output shows up
 
 ## Problems and conclusions
+- ssh: Connection refused - Both VM were without ssh being installed; 
+  - openssh-server was installed.
+- Permission denied: first ssh connection was performed using Vm name, instead of username;
+  - changed input name from UbuntuSub to vboxuser.
+
+- ssh needs to be enabled BEFORE denying all other services, or remote control will be banned;
+- ufw blocks out only new incoming connections, outcoming traffic and answers still works out;
