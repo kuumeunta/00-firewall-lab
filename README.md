@@ -10,6 +10,9 @@ Set up two Ubuntu virtual machines in a local virtual network, connect them via 
 
 # Network setup
 ![ipamain](screenshots/main_ip_a.png)
+```
+ip a
+```
 ip a for Main VM
 
 ![ipasub](screenshots/sub_ip_a.jpg)
