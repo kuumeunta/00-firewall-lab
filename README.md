@@ -16,19 +16,36 @@ ip a
 ip a for Main VM
 
 ![ipasub](screenshots/sub_ip_a.jpg)
+```
+ip a
+```
 ip a for Sub VM
 
 ![netcheck](screenshots/ping.png)
+```
+ping 192.168.56.102
+```
 Successful ping
 
 # SSH setup
 ![ssh main installed](screenshots/sshmaininstall.png)
+```
+sudo apt install openssh-server -y
+sudo systemctl status ssh
+```
 Installation for Main VM
 
 ![ssh sub installed](screenshots/sshsubinstall.png)
+```
+sudo apt install openssh-server -y
+sudo systemctl status ssh
+```
 Installation for Sub VM
 
 ![ssh successful_installation](screenshots/ssh_successful_connection.png)
+```
+ssh vboxuser@192.168.56.102
+```
 Connection established
 
 ## Firewall (ufw) configuration
