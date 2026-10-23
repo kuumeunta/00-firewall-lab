@@ -1,5 +1,5 @@
 # firewall-lab
-Установка и настройка межсетевого экрана в локальной виртуальной сети.
+Basic firewall (ufw) configuration between two Ubuntu VM's in a local virtual network. 
 
 # Devices 
 - Host: Windows 10, VirtualBox 7.2.22
