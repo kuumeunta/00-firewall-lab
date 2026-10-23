@@ -83,7 +83,7 @@ Connection is denied, so enabling it on Sub VM as well and trying to reconnect
 sudo ufw allow 8000/tcp
 python3 -m http:server 8000
 ```
-![succeed](curlallowed.png)
+![succeed](screenshots/curlallowed.png)
 ```
 curl --max-time 5 192.168.56.102:8000
 ```
