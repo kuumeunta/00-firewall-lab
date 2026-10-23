@@ -65,5 +65,16 @@ Enabling ufw and checking up actual config
 sudo ufw enable
 sudo ufw status verbose
 ```
+## Testing
+![subtestserver](screenshots/subtestserver.png)
+Opening :8000 http port on Sub VM and trying to check up connection using curl from Main VM 
+```
+python3 -m http:server 8000
+```
+![subtestserver](screenshots/curlport.png)
+```
+curl --max-time 5 192.168.52.102:8000
+```
+Connection is denied, so enabling it on Sub VM as well and trying to reconnect 
 ## Results
 ## Problems and conclusions
