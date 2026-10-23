@@ -77,7 +77,7 @@ curl --max-time 5 192.168.56.102:8000
 ```
 
 ---
-Connection is denied, so enabling it on Sub VM as well and trying to reconnect 
+curl timed out after 5 seconds with no response, so the port is blocked by ufw. Enabling it on Sub VM as well and trying to reconnect 
 ![adding rule and re-enable](screenshots/reenabling.png)
 ```
 sudo ufw allow 8000/tcp
@@ -87,13 +87,15 @@ python3 -m http.server 8000
 ```
 curl --max-time 5 192.168.56.102:8000
 ```
-Connection established, http blank output shows up
+Connection established, curl returns HTTP output (directory listing page) - port is now reachable.
 
 ## Problems and conclusions
-- ssh: Connection refused - Both VM were without ssh being installed; 
-  - openssh-server was installed.
-- Permission denied: first ssh connection was performed using Vm name, instead of username;
-  - changed input name from UbuntuSub to vboxuser.
+Problems:
+- ssh: "Connection refused". Neither VM had an SSH server installed.
+  - Fix: installed openssh-server on both machines.
+- ssh: "Permission denied". I had used the hostname (UbuntuSub) instead of the username.
+  - Fix: connected as vboxuser@192.168.56.102.
 
-- ssh needs to be enabled BEFORE denying all other services, or remote control will be banned;
-- ufw blocks out only new incoming connections, outcoming traffic and answers still works out;
+Conclusions:
+- Allow SSH in ufw BEFORE enabling the firewall, otherwise remote access is lost.
+- ufw filters new incoming connections; replies to outgoing connections still pass (stateful filtering).
