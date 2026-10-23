@@ -71,10 +71,22 @@ Opening :8000 http port on Sub VM and trying to check up connection using curl f
 ```
 python3 -m http:server 8000
 ```
-![subtestserver](screenshots/curlport.png)
+![subtestserver](screenshots/curldenied.png)
 ```
 curl --max-time 5 192.168.56.102:8000
 ```
+
+---
 Connection is denied, so enabling it on Sub VM as well and trying to reconnect 
-## Results
+![adding rule and re-enable](screenshots/reenabling.png)
+```
+sudo ufw allow 8000/tcp
+python3 -m http:server 8000
+```
+![succeed](curlallowed.png)
+```
+curl --max-time 5 192.168.56.102:8000
+```
+Connection established, http blank output shows up
+
 ## Problems and conclusions
