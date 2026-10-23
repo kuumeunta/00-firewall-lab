@@ -23,3 +23,6 @@ Installation for Main VM
 
 ![ssh sub installed](screenshots/sshsubinstall.png)
 Installation for Sub VM
+
+![ssh successful_installation](screenshots/ssh_successful_connection.png)
+Connection established
